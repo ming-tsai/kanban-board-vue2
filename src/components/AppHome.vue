@@ -26,31 +26,23 @@
         >
           <q-card class="app-card" flat bordered>
             <q-card-section horizontal>
-              <q-card-section class="q-pt-xs col">
-                <div class="text-h6 q-mt-sm q-mb-xs row">
-                  <div class="col">{{ item.title }}</div>
-                  <q-btn class="col-1" round flat icon="more_vert">
-                    <q-menu cover auto-close class="app-btn">
-                      <q-list>
-                        <q-item clickable>
-                          <q-item-section>Remove Card</q-item-section>
-                        </q-item>
-                        <q-item clickable>
-                          <q-item-section>Send Feedback</q-item-section>
-                        </q-item>
-                        <q-item clickable>
-                          <q-item-section>Share</q-item-section>
-                        </q-item>
-                      </q-list>
-                    </q-menu>
-                  </q-btn>
+              <q-card-section class="q-pt-xs">
+                <div class="text-h5 q-mt-sm q-mb-xs">{{ item.title }}</div>
+                <div>
+                  <q-avatar color="red" text-color="white" size="25px">{{
+                    getLetter(item.assignee)
+                  }}</q-avatar>
+                  {{ item.assignee }}
                 </div>
-                <q-avatar color="red" text-color="white" size="25px">{{
-                  getLetter(item.assignee)
-                }}</q-avatar>
-                <div class="text-caption text-grey">{{ item.dueDate }}</div>
               </q-card-section>
             </q-card-section>
+
+            <q-separator />
+
+            <q-card-actions>
+              <label class="float-label"> {{ item.dueDate }} </label>
+              <q-btn flat color="primary"> Reserve </q-btn>
+            </q-card-actions>
           </q-card>
         </q-item>
       </q-list>
@@ -60,7 +52,7 @@
 
 <script>
 import { QList, QItem, QCardSection, QItemLabel, QAvatar, QCard } from "quasar";
-import { QBtn, QMenu, QItemSection } from "quasar";
+import { QBtn, QItemSection, QSeparator } from "quasar";
 
 export default {
   name: "AppHome",
@@ -72,8 +64,8 @@ export default {
     QAvatar,
     QCard,
     QBtn,
-    QMenu,
     QItemSection,
+    QSeparator,
   },
   mounted() {
     this.getData();
